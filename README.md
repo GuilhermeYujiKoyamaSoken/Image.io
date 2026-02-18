@@ -109,8 +109,11 @@ Isso garante consistência global e adaptação automática ao horário do clien
 
 imageio/
 ├── imageioapi/ # Backend Spring Boot
+
 ├── image.io/ # Frontend React
+
 ├── docker-compose.yml
+
 └── README.md
 
 ---
