@@ -1,0 +1,64 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16.3
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: image.io
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - imageIOnetwork
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - '15432:80'
+    depends_on:
+      - db
+    networks:
+      - imageIOnetwork
+
+  sbootapp:
+    build:
+      context: ./imageioapi
+      dockerfile: Dockerfile
+    container_name: imageioapi
+    restart: on-failure
+    depends_on:
+      - db
+    ports:
+      - '8080:8080'
+    networks:
+      - imageIOnetwork
+    environment:
+      - POSTGRES_HOST=db
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: ./image.io
+    container_name: imageioapp
+    restart: on-failure
+    depends_on:
+      - sbootapp
+    ports:
+      - '3000:3000'
+    networks:
+      - imageIOnetwork
+
+networks:
+  imageIOnetwork:
+    driver: bridge
+
+volumes:
+  pgdata:
