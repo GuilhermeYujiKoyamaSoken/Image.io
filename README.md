@@ -9,7 +9,7 @@ Projeto full-stack desenvolvido com **Spring Boot**, **PostgreSQL**, **React** e
 ## 🚀 Tecnologias Utilizadas
 
 ### Backend
-- Java 21
+- Java 17
 - Spring Boot
 - Spring Data JPA
 - PostgreSQL
