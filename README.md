@@ -148,12 +148,15 @@ Caso deseje rodar sem Docker:
 ### Backend
 
 cd imageioapi
+
 mvn spring-boot:run
 
 ### Frontend
 
 cd image.io
+
 npm install
+
 npm run dev
 
 ---
