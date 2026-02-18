@@ -108,6 +108,7 @@ Isso garante consistência global e adaptação automática ao horário do clien
 ## 📂 Estrutura do Projeto
 
 imageio/
+
 ├── imageioapi/ # Backend Spring Boot
 
 ├── image.io/ # Frontend React
